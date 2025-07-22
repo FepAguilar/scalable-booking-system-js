@@ -33,15 +33,15 @@ export class AuthService {
     });
 
     const accessToken = await this.jwtService.signAsync({
-      sub: user.id,
-      email: user.email,
+      sub: user?.id,
+      email: user?.email,
     });
 
     return {
       accessToken,
       user: {
-        email: user.email,
-        fullName: user.fullName,
+        email: user?.email,
+        fullName: user?.fullName,
       },
     };
   }
@@ -55,22 +55,22 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const passwordMatch = await bcrypt.compare(dto.password, user.password);
+    const passwordMatch = await bcrypt.compare(dto.password, user?.password);
 
     if (!passwordMatch) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
     const accessToken = await this.jwtService.signAsync({
-      sub: user.id,
-      email: user.email,
+      sub: user?.id,
+      email: user?.email,
     });
 
     return {
       accessToken,
       user: {
-        email: user.email,
-        fullName: user.fullName,
+        email: user?.email,
+        fullName: user?.fullName,
       },
     };
   }
