@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "prisma/*": ["src/prisma/*"]
+    },
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -16,6 +19,9 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    
   }
 }
