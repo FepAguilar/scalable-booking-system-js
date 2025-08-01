@@ -10,6 +10,9 @@ Handles user registration, login, and JWT-based authentication.
 ### 👤 [user-service](./user-service)
 Stores user profile information such as full name, role, and email.
 
+### 🏢 [workspace-service](./workspace-service)  
+Manages workspace data such as name and description.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites

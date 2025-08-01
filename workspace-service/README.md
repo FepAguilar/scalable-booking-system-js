@@ -1,11 +1,11 @@
-# User Service
+# Workspace Service
 
 Manages user profile data like full name, email, and role.
 
 ### 📦 Endpoints
 
-- `POST /user`
-- `GET /user/:id`
+- `POST /workspaces`
+- `GET /workspaces`
 
 ### 🛠 Setup
 
@@ -18,8 +18,8 @@ npm run start:dev
 ### 🔐  Environment Variables
 
 ```bash
-DATABASE_URL=postgresql://user:pass@localhost:5432/user-db
-PORT=3001
+DATABASE_URL=postgresql://user:pass@localhost:5432/workspace-db
+PORT=3002
 ``` 
 
 ### 🧪 Tests
@@ -30,4 +30,4 @@ npm run test
 
 ### 📚 Swagger
 Once running:
-http://localhost:3001/api/docs
+http://localhost:3002/api/docs
