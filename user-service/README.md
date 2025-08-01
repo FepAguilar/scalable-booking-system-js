@@ -30,4 +30,4 @@ npm run test
 
 ### 📚 Swagger
 Once running:
-http://localhost:3000/api
+http://localhost:3001/api/docs
