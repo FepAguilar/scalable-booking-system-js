@@ -1,21 +1,22 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2023",
+    "target": "ES2021",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./dist",          // ✅ THIS IS IMPORTANT
     "baseUrl": "./",
     "incremental": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
-  }
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],             // ✅ Only compile src
+  "exclude": ["node_modules", "dist"]
 }
