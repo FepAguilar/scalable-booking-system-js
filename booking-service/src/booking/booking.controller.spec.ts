@@ -1,19 +1,19 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { BookingController } from './booking.controller';
-import { BookingService } from './booking.service';
-import { CreateBookingDto } from './dto/create-booking.dto';
-import { Booking } from '@prisma/client';
+import { Test, TestingModule } from "@nestjs/testing";
+import { BookingController } from "./booking.controller";
+import { BookingService } from "./booking.service";
+import { CreateBookingDto } from "./dto/create-booking.dto";
+import { Booking } from "@prisma/client";
 
-describe('BookingController', () => {
+describe("BookingController", () => {
   let controller: BookingController;
 
   const mockBooking: Booking = {
-    id: '1',
-    userId: 'user-1',
-    workspaceId: 'ws-1',
-    startTime: new Date('2025-01-01T09:00:00.000Z'),
-    endTime: new Date('2025-01-01T10:00:00.000Z'),
-    status: 'PENDING',
+    id: "1",
+    userId: "user-1",
+    workspaceId: "ws-1",
+    startTime: new Date("2025-01-01T09:00:00.000Z"),
+    endTime: new Date("2025-01-01T10:00:00.000Z"),
+    status: "PENDING",
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -41,18 +41,18 @@ describe('BookingController', () => {
     jest.clearAllMocks();
   });
 
-  it('should be defined', () => {
+  it("should be defined", () => {
     expect(controller).toBeDefined();
   });
 
-  describe('create()', () => {
-    it('should call service.create and return a Booking', async () => {
+  describe("create()", () => {
+    it("should call service.create and return a Booking", async () => {
       const dto: CreateBookingDto = {
-        userId: 'user-1',
-        workspaceId: 'ws-1',
-        startTime: '2025-01-01T09:00:00.000Z',
-        endTime: '2025-01-01T10:00:00.000Z',
-        status: 'PENDING',
+        userId: "user-1",
+        workspaceId: "ws-1",
+        startTime: "2025-01-01T09:00:00.000Z",
+        endTime: "2025-01-01T10:00:00.000Z",
+        status: "PENDING",
       };
 
       const result = await controller.create(dto);
@@ -62,9 +62,9 @@ describe('BookingController', () => {
     });
   });
 
-  describe('findById()', () => {
-    it('should call service.findById and return a Booking', async () => {
-      const id = '1';
+  describe("findById()", () => {
+    it("should call service.findById and return a Booking", async () => {
+      const id = "1";
       const result = await controller.findById(id);
 
       expect(result).toEqual(mockBooking);

@@ -10,4 +10,4 @@ import { AdminController } from "./admin.controller";
     { provide: PrismaClient, useValue: new PrismaClient() },
   ],
 })
-export class AdminModule {} 
+export class AdminModule {}

@@ -24,4 +24,4 @@ async function bootstrap() {
   // eslint-disable-next-line no-console
   console.log(`📚 Swagger docs at http://localhost:${port}/api/docs`);
 }
-bootstrap(); 
+bootstrap();

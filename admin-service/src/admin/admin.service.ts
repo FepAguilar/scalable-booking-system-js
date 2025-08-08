@@ -18,4 +18,4 @@ export class AdminService {
   async findAll(): Promise<Admin[]> {
     return this.prisma.admin.findMany({ orderBy: { createdAt: "desc" } });
   }
-} 
+}

@@ -50,4 +50,4 @@ describe("AdminService", () => {
     expect(mockDelegate.findMany).toHaveBeenCalled();
     expect(result).toEqual([mockAdmin]);
   });
-}); 
+});

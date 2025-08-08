@@ -9,4 +9,4 @@ export class CreateAdminDto {
   @ApiProperty()
   @IsEmail()
   email!: string;
-} 
+}
