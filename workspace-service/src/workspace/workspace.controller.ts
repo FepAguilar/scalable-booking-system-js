@@ -1,24 +1,24 @@
-import { Controller, Get, Post, Body, Param } from "@nestjs/common";
-import { WorkspaceService } from "./workspace.service";
-import { CreateWorkspaceDto } from "./dto/create-workspace.dto";
-import { Workspace } from "@prisma/client";
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import { WorkspaceService } from './workspace.service';
+import { CreateWorkspaceDto } from './dto/create-workspace.dto';
+import { Workspace } from '@prisma/client';
 import {
   ApiTags,
   ApiOperation,
   ApiResponse,
   ApiCreatedResponse,
   ApiBody,
-} from "@nestjs/swagger";
+} from '@nestjs/swagger';
 
-@ApiTags("Workspaces") // Groups endpoints under "Workspaces"
-@Controller("workspaces")
+@ApiTags('Workspaces') // Groups endpoints under "Workspaces"
+@Controller('workspaces')
 export class WorkspaceController {
   constructor(private readonly workspaceService: WorkspaceService) {}
 
   @Post()
-  @ApiOperation({ summary: "Create a new workspace" })
+  @ApiOperation({ summary: 'Create a new workspace' })
   @ApiCreatedResponse({
-    description: "The workspace has been successfully created.",
+    description: 'The workspace has been successfully created.',
   })
   @ApiBody({ type: CreateWorkspaceDto })
   async create(@Body() dto: CreateWorkspaceDto): Promise<Workspace> {
@@ -26,26 +26,59 @@ export class WorkspaceController {
   }
 
   @Get()
-  @ApiOperation({ summary: "Get all workspaces" })
+  @ApiOperation({ summary: 'Get all workspaces' })
   @ApiResponse({
     status: 200,
-    description: "List of all workspaces",
+    description: 'List of all workspaces',
   })
   async findAll(): Promise<Workspace[]> {
     return this.workspaceService.findAll();
   }
 
-  @Get(":id")
-  @ApiOperation({ summary: "Get workspace by ID" })
+  @Get(':id')
+  @ApiOperation({ summary: 'Get workspace by ID' })
   @ApiResponse({
     status: 200,
-    description: "Workspace found",
+    description: 'Workspace found',
   })
   @ApiResponse({
     status: 404,
-    description: "Workspace not found",
+    description: 'Workspace not found',
   })
-  async findById(@Param("id") id: string): Promise<Workspace> {
+  async findById(@Param('id') id: string): Promise<Workspace> {
     return this.workspaceService.findById(id);
+  }
+
+  @Get(':id/bookings')
+  @ApiOperation({ summary: 'Get workspace with bookings' })
+  @ApiResponse({
+    status: 200,
+    description: 'Workspace with bookings found',
+  })
+  async findByIdWithBookings(@Param('id') id: string): Promise<any> {
+    return this.workspaceService.findByIdWithBookings(id);
+  }
+
+  @Put(':id')
+  @ApiOperation({ summary: 'Update workspace' })
+  @ApiResponse({
+    status: 200,
+    description: 'Workspace updated successfully',
+  })
+  async update(
+    @Param('id') id: string,
+    @Body() dto: Partial<CreateWorkspaceDto>,
+  ): Promise<Workspace> {
+    return this.workspaceService.update(id, dto);
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'Delete workspace' })
+  @ApiResponse({
+    status: 200,
+    description: 'Workspace deleted successfully',
+  })
+  async delete(@Param('id') id: string): Promise<void> {
+    return this.workspaceService.delete(id);
   }
 }
