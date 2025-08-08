@@ -13,6 +13,9 @@ Stores user profile information such as full name, role, and email.
 ### 🏢 [workspace-service](./workspace-service)  
 Manages workspace data such as name and description.
 
+### 📅 [booking-service](./booking-service)
+Handles workspace booking lifecycle (create, list, confirm, cancel, reschedule, delete).
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
