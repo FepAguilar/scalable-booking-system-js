@@ -22,6 +22,9 @@ Processes payments related to bookings.
 ### 🔔 [notification-service](./notification-service)
 Sends and stores notifications related to bookings and users.
 
+### 📊 [reporting-service](./reporting-service)
+Generates and manages reports for the platform.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
