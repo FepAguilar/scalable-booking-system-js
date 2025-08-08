@@ -1,5 +1,20 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete, Query } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse, ApiCreatedResponse, ApiBody } from '@nestjs/swagger';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Patch,
+  Delete,
+  Query,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiCreatedResponse,
+  ApiBody,
+} from '@nestjs/swagger';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { BookingService } from './booking.service';
 import { QueryBookingsDto } from './dto/query-bookings.dto';
@@ -12,7 +27,9 @@ export class BookingController {
 
   @Post()
   @ApiOperation({ summary: 'Create a new booking' })
-  @ApiCreatedResponse({ description: 'The booking has been successfully created.' })
+  @ApiCreatedResponse({
+    description: 'The booking has been successfully created.',
+  })
   @ApiBody({ type: CreateBookingDto })
   create(@Body() dto: CreateBookingDto) {
     return this.bookingService.create(dto);
