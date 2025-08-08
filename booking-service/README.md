@@ -23,7 +23,7 @@ npm run start:dev
 ### 🔐  Environment Variables
 
 ```bash
-DATABASE_URL=postgresql://postgres:postgres@localhost:5434/booking_service?schema=public
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/booking_service?schema=public
 PORT=3003
 ```
 
