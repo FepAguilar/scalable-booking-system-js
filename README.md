@@ -19,6 +19,9 @@ Handles workspace booking lifecycle (create, list, confirm, cancel, reschedule, 
 ### 💳 [payment-service](./payment-service)
 Processes payments related to bookings.
 
+### 🔔 [notification-service](./notification-service)
+Sends and stores notifications related to bookings and users.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
