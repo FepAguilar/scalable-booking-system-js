@@ -16,6 +16,9 @@ Manages workspace data such as name and description.
 ### 📅 [booking-service](./booking-service)
 Handles workspace booking lifecycle (create, list, confirm, cancel, reschedule, delete).
 
+### 💳 [payment-service](./payment-service)
+Processes payments related to bookings.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
