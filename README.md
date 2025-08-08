@@ -25,6 +25,9 @@ Sends and stores notifications related to bookings and users.
 ### 📊 [reporting-service](./reporting-service)
 Generates and manages reports for the platform.
 
+### 👨‍💼 [admin-service](./admin-service)
+Manages admin users and platform administration.
+
 ## 🛠️ Getting Started
 
 ### Prerequisites
