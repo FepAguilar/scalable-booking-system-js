@@ -55,4 +55,4 @@ describe("AdminController", () => {
     expect(result).toEqual([mockAdmin]);
     expect(mockService.findAll).toHaveBeenCalled();
   });
-}); 
+});

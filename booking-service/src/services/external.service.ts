@@ -1,6 +1,6 @@
-import { Injectable, Logger, HttpException, HttpStatus } from '@nestjs/common';
-import axios, { AxiosInstance } from 'axios';
-import { SERVICES_CONFIG } from '../config/services.config';
+import { Injectable, Logger, HttpException, HttpStatus } from "@nestjs/common";
+import axios, { AxiosInstance } from "axios";
+import { SERVICES_CONFIG } from "../config/services.config";
 
 @Injectable()
 export class ExternalService {
@@ -21,10 +21,10 @@ export class ExternalService {
       return response.status === 200;
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        error instanceof Error ? error.message : "Unknown error";
       this.logger.error(`Failed to validate user ${userId}:`, errorMessage);
       throw new HttpException(
-        'User not found or service unavailable',
+        "User not found or service unavailable",
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -38,13 +38,13 @@ export class ExternalService {
       return response.status === 200;
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        error instanceof Error ? error.message : "Unknown error";
       this.logger.error(
         `Failed to validate workspace ${workspaceId}:`,
         errorMessage,
       );
       throw new HttpException(
-        'Workspace not found or service unavailable',
+        "Workspace not found or service unavailable",
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -57,20 +57,20 @@ export class ExternalService {
         {
           bookingId,
           amount,
-          currency: 'USD',
-          status: 'PENDING',
+          currency: "USD",
+          status: "PENDING",
         },
       );
       return response.data;
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        error instanceof Error ? error.message : "Unknown error";
       this.logger.error(
         `Failed to create payment for booking ${bookingId}:`,
         errorMessage,
       );
       throw new HttpException(
-        'Payment service unavailable',
+        "Payment service unavailable",
         HttpStatus.SERVICE_UNAVAILABLE,
       );
     }
@@ -87,15 +87,15 @@ export class ExternalService {
         {
           userId,
           bookingId,
-          type: 'EMAIL',
+          type: "EMAIL",
           message,
-          status: 'PENDING',
+          status: "PENDING",
         },
       );
       return response.data;
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        error instanceof Error ? error.message : "Unknown error";
       this.logger.error(
         `Failed to send notification for booking ${bookingId}:`,
         errorMessage,
@@ -117,7 +117,7 @@ export class ExternalService {
       return response.data;
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error';
+        error instanceof Error ? error.message : "Unknown error";
       this.logger.error(`Failed to create report:`, errorMessage);
       // Don't throw here - reporting is not critical for booking creation
       return null;

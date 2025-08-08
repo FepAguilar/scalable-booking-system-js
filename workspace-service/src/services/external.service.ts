@@ -50,7 +50,10 @@ export class ExternalService {
     }
   }
 
-  async createWorkspaceReport(title: string, description: string): Promise<any> {
+  async createWorkspaceReport(
+    title: string,
+    description: string,
+  ): Promise<any> {
     try {
       const response = await this.httpClient.post(
         `${SERVICES_CONFIG.reporting.baseUrl}${SERVICES_CONFIG.reporting.endpoints.create}`,
@@ -67,4 +70,4 @@ export class ExternalService {
       return null;
     }
   }
-} 
+}

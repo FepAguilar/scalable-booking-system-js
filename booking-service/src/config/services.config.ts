@@ -1,32 +1,32 @@
 export const SERVICES_CONFIG = {
   user: {
-    baseUrl: process.env.USER_SERVICE_URL || 'http://localhost:3001',
+    baseUrl: process.env.USER_SERVICE_URL || "http://localhost:3001",
     endpoints: {
-      findById: '/user',
+      findById: "/user",
     },
   },
   workspace: {
-    baseUrl: process.env.WORKSPACE_SERVICE_URL || 'http://localhost:3002',
+    baseUrl: process.env.WORKSPACE_SERVICE_URL || "http://localhost:3002",
     endpoints: {
-      findById: '/workspaces',
+      findById: "/workspaces",
     },
   },
   payment: {
-    baseUrl: process.env.PAYMENT_SERVICE_URL || 'http://localhost:3004',
+    baseUrl: process.env.PAYMENT_SERVICE_URL || "http://localhost:3004",
     endpoints: {
-      create: '/payments',
+      create: "/payments",
     },
   },
   notification: {
-    baseUrl: process.env.NOTIFICATION_SERVICE_URL || 'http://localhost:3005',
+    baseUrl: process.env.NOTIFICATION_SERVICE_URL || "http://localhost:3005",
     endpoints: {
-      create: '/notifications',
+      create: "/notifications",
     },
   },
   reporting: {
-    baseUrl: process.env.REPORTING_SERVICE_URL || 'http://localhost:3006',
+    baseUrl: process.env.REPORTING_SERVICE_URL || "http://localhost:3006",
     endpoints: {
-      create: '/reports',
+      create: "/reports",
     },
   },
 } as const;

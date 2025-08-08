@@ -2,12 +2,12 @@ import {
   Injectable,
   BadRequestException,
   NotFoundException,
-} from '@nestjs/common';
-import { Booking, PrismaClient, Prisma } from '@prisma/client';
-import { CreateBookingDto } from './dto/create-booking.dto';
-import { QueryBookingsDto } from './dto/query-bookings.dto';
-import { UpdateBookingDto } from './dto/update-booking.dto';
-import { ExternalService } from '../services/external.service';
+} from "@nestjs/common";
+import { Booking, PrismaClient, Prisma } from "@prisma/client";
+import { CreateBookingDto } from "./dto/create-booking.dto";
+import { QueryBookingsDto } from "./dto/query-bookings.dto";
+import { UpdateBookingDto } from "./dto/update-booking.dto";
+import { ExternalService } from "../services/external.service";
 
 @Injectable()
 export class BookingService {
@@ -31,7 +31,7 @@ export class BookingService {
       id: excludeBookingId ? { not: excludeBookingId } : undefined,
       // Overlap when (start < existing.end) && (end > existing.start)
       AND: [{ startTime: { lt: endTime } }, { endTime: { gt: startTime } }],
-      status: { in: ['PENDING', 'CONFIRMED'] },
+      status: { in: ["PENDING", "CONFIRMED"] },
     };
     return overlap;
   }
@@ -40,7 +40,7 @@ export class BookingService {
     const start = new Date(dto.startTime);
     const end = new Date(dto.endTime);
     if (!(start < end)) {
-      throw new BadRequestException('startTime must be before endTime');
+      throw new BadRequestException("startTime must be before endTime");
     }
 
     // Validate user exists
@@ -55,7 +55,7 @@ export class BookingService {
     });
     if (overlapping) {
       throw new BadRequestException(
-        'Time slot overlaps with an existing booking',
+        "Time slot overlaps with an existing booking",
       );
     }
 
@@ -66,13 +66,13 @@ export class BookingService {
         workspaceId: dto.workspaceId,
         startTime: start,
         endTime: end,
-        status: dto.status ?? 'PENDING',
+        status: dto.status ?? "PENDING",
       },
     });
 
     // Orchestrate external services (non-blocking)
     this.orchestrateExternalServices(booking).catch((error) => {
-      console.error('Failed to orchestrate external services:', error);
+      console.error("Failed to orchestrate external services:", error);
     });
 
     return booking;
@@ -98,11 +98,11 @@ export class BookingService {
 
       // Create report entry
       await this.externalService.createReport(
-        'New Booking Created',
+        "New Booking Created",
         `Booking ${booking.id} created for user ${booking.userId} in workspace ${booking.workspaceId}`,
       );
     } catch (error) {
-      console.error('External service orchestration failed:', error);
+      console.error("External service orchestration failed:", error);
     }
   }
 
@@ -132,40 +132,40 @@ export class BookingService {
 
     return this.prisma.booking.findMany({
       where,
-      orderBy: { startTime: 'asc' },
+      orderBy: { startTime: "asc" },
     });
   }
 
   async confirm(id: string): Promise<Booking> {
     const booking = await this.prisma.booking.findUnique({ where: { id } });
-    if (!booking) throw new NotFoundException('Booking not found');
-    if (booking.status === 'CANCELLED') {
-      throw new BadRequestException('Cannot confirm a cancelled booking');
+    if (!booking) throw new NotFoundException("Booking not found");
+    if (booking.status === "CANCELLED") {
+      throw new BadRequestException("Cannot confirm a cancelled booking");
     }
     return this.prisma.booking.update({
       where: { id },
-      data: { status: 'CONFIRMED' },
+      data: { status: "CONFIRMED" },
     });
   }
 
   async cancel(id: string): Promise<Booking> {
     const booking = await this.prisma.booking.findUnique({ where: { id } });
-    if (!booking) throw new NotFoundException('Booking not found');
-    if (booking.status === 'CANCELLED') return booking;
+    if (!booking) throw new NotFoundException("Booking not found");
+    if (booking.status === "CANCELLED") return booking;
     return this.prisma.booking.update({
       where: { id },
-      data: { status: 'CANCELLED' },
+      data: { status: "CANCELLED" },
     });
   }
 
   async update(id: string, dto: UpdateBookingDto): Promise<Booking> {
     const booking = await this.prisma.booking.findUnique({ where: { id } });
-    if (!booking) throw new NotFoundException('Booking not found');
+    if (!booking) throw new NotFoundException("Booking not found");
 
     const start = dto.startTime ? new Date(dto.startTime) : booking.startTime;
     const end = dto.endTime ? new Date(dto.endTime) : booking.endTime;
     if (!(start < end)) {
-      throw new BadRequestException('startTime must be before endTime');
+      throw new BadRequestException("startTime must be before endTime");
     }
 
     // If time/window changed, ensure no overlap against others
@@ -175,7 +175,7 @@ export class BookingService {
       });
       if (overlapping) {
         throw new BadRequestException(
-          'Time slot overlaps with an existing booking',
+          "Time slot overlaps with an existing booking",
         );
       }
     }

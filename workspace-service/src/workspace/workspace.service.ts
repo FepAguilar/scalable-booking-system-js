@@ -21,7 +21,9 @@ export class WorkspaceService {
     return workspace;
   }
 
-  private async orchestrateExternalServices(workspace: Workspace): Promise<void> {
+  private async orchestrateExternalServices(
+    workspace: Workspace,
+  ): Promise<void> {
     try {
       // Send workspace creation notification
       await this.externalService.sendWorkspaceNotification(
@@ -65,7 +67,10 @@ export class WorkspaceService {
     };
   }
 
-  async update(id: string, dto: Partial<CreateWorkspaceDto>): Promise<Workspace> {
+  async update(
+    id: string,
+    dto: Partial<CreateWorkspaceDto>,
+  ): Promise<Workspace> {
     const workspace = await this.findById(id);
 
     const updatedWorkspace = await this.prisma.workspace.update({
