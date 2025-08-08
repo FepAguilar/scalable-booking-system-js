@@ -89,7 +89,7 @@ start_service() {
     
     # Run Prisma migrations
     print_status "Running Prisma migrations for $service_name..."
-    npx prisma migrate dev --name init --silent || true
+    npx prisma migrate dev --name init || true
     
     # Start the service in background
     print_status "Starting $service_name in background..."

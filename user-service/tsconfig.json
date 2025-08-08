@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./",
+    "outDir": "./dist",
     "paths": {
       "generated/prisma": ["generated/prisma"]
     }
